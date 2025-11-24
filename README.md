@@ -4,7 +4,7 @@ Basically this just puts [EmulatorJS](https://emulatorjs.org/) pre-configured fo
 
 You have to provide the ROM to load due to licensing issues. The ROMs will be stored in local storage so you have to only load them once on each device.
 
-## Setup
+## Deployment
 
 Just put the content of htdocs on your web space.
 
