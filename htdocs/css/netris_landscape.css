@@ -21,8 +21,8 @@
 
     .game-container .controls .zone {
         position: absolute;
-        bottom: 40cqh;
-        left: -4cqw;
+        top: 6cqh;
+        left: -5cqw;
         width: 50cqh;
         height: 50cqh;
         display: grid;
@@ -30,7 +30,7 @@
         grid-template-columns: 50% 50%;
         grid-template-rows: 50% 50%;
 
-        transform: rotate(45deg);
+        transform: rotate(60deg);
         pointer-events: all;
     }
 

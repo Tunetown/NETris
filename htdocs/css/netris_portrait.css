@@ -21,16 +21,14 @@
     @container controls (aspect-ratio <= 4/3) {
         .game-container .controls .zone {
             position: absolute;
-            bottom: 55cqw;
-            left: -4cqw;
+            top: 8cqw;
+            left: -5cqw;
             width: 50cqw;
             height: 50cqw;
             display: grid;
-
             grid-template-columns: 50% 50%;
             grid-template-rows: 50% 50%;
-
-            transform: rotate(45deg);
+            transform: rotate(65deg);
         }
 
         .game-container .controls .zone > * {
@@ -46,7 +44,7 @@
 
         .game-container .controls .button.button-a {
             right: 2cqw;
-            bottom: 75cqw;    
+            top: 32cqw;    
             border-radius: 100%;
             width: 18cqw;
             height: 18cqw;
@@ -55,7 +53,7 @@
 
         .game-container .controls .button.button-b {
             right: 17cqw;
-            bottom: 60cqw;    
+            top: 45cqw;    
             border-radius: 100%;
             width: 18cqw;
             height: 18cqw;
