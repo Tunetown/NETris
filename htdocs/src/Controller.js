@@ -20,7 +20,7 @@ import { LocalState } from './LocalState.js';
 /**
  * App version 
  */
-export const NETRIS_VERSION = '0.1.0';
+export const NETRIS_VERSION = '0.1.2';
 	
 /**
  * Main Controller class
@@ -29,6 +29,40 @@ export class Controller {
 
     #options = null;
     #state = null;
+    #coreSelect = null;
+
+    #cores = {
+        "Nintendo 64": "n64",
+        "Nintendo Game Boy": "gb",
+        "Nintendo Game Boy Advance": "gba",
+        "Nintendo DS": "nds",
+        "Nintendo Entertainment System": "nes",
+        "Super Nintendo Entertainment System": "snes",
+        "PlayStation": "psx",
+        "Virtual Boy": "vb",
+        "Sega Mega Drive": "segaMD",
+        "Sega Master System": "segaMS",
+        "Sega CD": "segaCD",
+        "Atari Lynx": "lynx",
+        "Sega 32X": "sega32x",
+        "Atari Jaguar": "jaguar",
+        "Sega Game Gear": "segaGG",
+        "Sega Saturn": "segaSaturn",
+        "Atari 7800": "atari7800",
+        "Atari 2600": "atari2600",
+        "NEC TurboGrafx-16/SuperGrafx/PC Engine": "pce",
+        "NEC PC-FX": "pcfx",
+        "SNK NeoGeo Pocket (Color)": "ngp",
+        "Bandai WonderSwan (Color)": "ws",
+        "ColecoVision": "coleco",
+        "Commodore 64": "vice_x64",
+        "Commodore 128": "vice_x128",
+        "Commodore VIC20": "vice_xvic",
+        "Commodore Plus/4": "vice_xplus4",
+        "Commodore PET": "vice_xpet",
+        "PlayStation Portable": "psp",
+        "DOS": "dosbox_pure"
+    };
 
     /**
      * {
@@ -60,24 +94,44 @@ export class Controller {
             $(that.#options.container)
             .empty()
             .append(
-                $('<label for="gamefile"/>')
-                .text('ROM File:'),
+                $('<div class="intro"/>').append(
+                    $('<div class="roms"/>')
+                    .append(that.#getAvailableRoms()),
 
-                input = $('<input type="file" id="gamefile"/>')
-                .on('change', async function() {
-                    // Add the ROM and return an URL to it
-                    const url = await that.#addRom(input[0].files[0]);
+                    $('<label for="gamefile"/>')
+                    .text('Add ROM:'),
 
-                    // Load the game
-                    that.#setupEJS(url);
+                    input = $('<input type="file" id="gamefile"/>')
+                    .on('change', async function() {
+                        // Add the ROM and return an URL to it
+                        const url = await that.#addRom(input[0].files[0]);
 
-                    resolve();
-                }),
+                        // Load the game
+                        that.#setupEJS(url);
 
-                $('<div class="roms"/>')
-                .append(that.#getAvailableRoms())
+                        resolve();
+                    }),
+
+                    that.#coreSelect = $('<select class="core-select"/>')
+                        .append(that.#getCoreOptions())
+                        .val('nes')
+                )
             );
         });
+    }
+
+    /**
+     * Returns DOM option tags for all cores
+     */
+    #getCoreOptions() {
+        const ret = [];
+        for (const type in this.#cores) {
+            ret.push(
+                $('<option value="' + this.#cores[type] + '"/>')
+                .text(type)
+            )
+        }
+        return ret;
     }
 
     /**
@@ -92,6 +146,8 @@ export class Controller {
                 $('<div class="rom-link"/>')            
                 .text(item.name)
                 .on('click', async function() {
+                    that.#coreSelect.val(item.core);
+
                     that.#setupEJS(
                         await that.#getUrlFromBase64(item.data)
                     )
@@ -127,16 +183,23 @@ export class Controller {
     async #addRom(file) {
         const base64 = await this.#fileToBase64(file);
         
-        const roms = this.#state.get('roms') || [];
+        try {
+            const roms = this.#state.get('roms') || [];
 
-        roms.push({
-            name: file.name,
-            data: base64
-        });
+            roms.push({
+                name: file.name,
+                data: base64,
+                core: this.#coreSelect.val()
+            });
 
-        this.#state.set('roms', roms);
+            this.#state.set('roms', roms);
 
-        return this.#getUrlFromBase64(base64);
+            return this.#getUrlFromBase64(base64);
+        } catch (e) {
+            console.warn(e);
+
+            return file;
+        }
     }
 
     /**
@@ -168,7 +231,9 @@ export class Controller {
             .empty()
             .append(
                 $('<div id="game"/>')
-                .addClass('game')
+                .addClass('game'),
+
+                this.#createControls()
             );
 
         window.EJS_player = '#game';
@@ -176,12 +241,12 @@ export class Controller {
         window.EJS_gameID = 3121;
         window.EJS_gameName = 'NETris';
         window.EJS_color = "#FF9900";
-        window.EJS_core = 'nes';
+        window.EJS_core = this.#coreSelect.val(); //'nes';
         window.EJS_Settings = {
             defaultControllers: {
                 '0': {                   // Player 1
                     '0': {                   
-                        'value': '90'         // B   -> z
+                        'value': '89'         // B   -> y
                     },
                     '1': {
                         'value': '83'         // Y   -> s
@@ -231,4 +296,47 @@ export class Controller {
             $('<script src="lib/ejs/data/loader.js"></script>')
         );
     }
+
+    #createControls() {
+        function createButton(content, keycode, classes) {
+            return $('<div>' + content + '</div>')
+            .addClass(classes)
+            .on('mousedown touchstart', function(e) {
+                e.preventDefault();
+                EJS_emulator.gameManager.simulateInput(0, keycode, 1);
+            })
+            .on('mouseup touchend', function(e) {
+                e.preventDefault();
+                EJS_emulator.gameManager.simulateInput(0, keycode, 0);
+            });
+        }
+
+        const ret = $('<div class="controls"/>').append(
+            $('<div class="zone"/>').append(
+                createButton('', 4, 'arrow arrow-up'),
+                createButton('', 7, 'arrow arrow-right'),
+                createButton('', 6, 'arrow arrow-left'),
+                createButton('', 5, 'arrow arrow-down'),
+            ),
+
+            createButton('A', 8, 'button round-button button-a'),
+            createButton('B', 0, 'button round-button button-b'),
+
+            createButton('Start', 3, 'button normal-button button-start'),
+            createButton('Select', 2, 'button normal-button button-select'),
+        )
+
+        if (!this.#isTouchDevice()) {
+            ret.css('display', 'none');
+        }
+
+        return ret;
+    }
+
+    /**
+	 * Returns if we are on a touch device
+	 */
+	#isTouchDevice() {
+		return window.matchMedia("(pointer: coarse)").matches;
+	} 
 }

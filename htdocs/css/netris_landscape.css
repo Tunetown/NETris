@@ -1,0 +1,90 @@
+@container gameContainer (aspect-ratio > 1/1) {
+    .game-container .game {
+        width: calc(4 / 3 * 100cqh);
+        height: 100cqh;
+        left: calc((100cqw - (4 / 3 * 100cqh)) / 2);
+        z-index: 10;
+    }
+
+    /********************************************/
+
+    .game-container .controls {
+        width: 100cqw;
+        height: 100cqh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        container-type: size;
+        /* background-color: #ff990044; */
+        z-index: 100;
+        pointer-events: none;
+    }
+
+    .game-container .controls .zone {
+        position: absolute;
+        bottom: 20cqh;
+        left: 2cqw;
+        width: 50cqh;
+        height: 50cqh;
+        display: grid;
+        background-color: gray;
+
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
+
+        transform: rotate(45deg);
+        pointer-events: all;
+    }
+
+    .game-container .controls .zone > * {
+        border: 1px solid white;
+    }
+
+    .game-container .controls .button {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: all;
+    }
+
+    .game-container .controls .button.button-a {
+        background-color: red;
+        right: 1cqw;
+        bottom: 38cqh;    
+        border-radius: 100%;
+        width: 11cqw;
+        height: 11cqw;
+        font-size: 5cqw;
+    }
+
+    .game-container .controls .button.button-b {
+        background-color: red;
+        right: 13cqw;
+        bottom: 28cqh;    
+        border-radius: 100%;
+        width: 11cqw;
+        height: 11cqw;
+        font-size: 5cqw;
+    }
+
+    .game-container .controls .button.button-select {
+        background-color: gray;
+        right: 2cqh;
+        top: 2cqh;    
+        width: 18cqh;
+        height: 12cqh;
+        border-radius: 1cqh;
+        font-size: 4cqh;
+    }
+
+    .game-container .controls .button.button-start {
+        background-color: gray;
+        right: 2cqh;
+        top: 15cqh;    
+        width: 18cqh;
+        height: 12cqh;
+        border-radius: 1cqh;
+        font-size: 4cqh;
+    }
+}

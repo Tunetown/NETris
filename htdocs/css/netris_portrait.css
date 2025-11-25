@@ -1,0 +1,158 @@
+@container gameContainer (aspect-ratio <= 1/1) {
+    .game-container .game {
+        width: 100cqw;
+        height: calc(3 / 4 * 100cqw);
+        z-index: 10;
+    }
+
+    /********************************************/
+
+    .game-container .controls {
+        width: 100cqw;
+        height: calc(100cqh - (3 / 4 * 100cqw));
+        /* background-color: green; */
+        position: absolute;
+        bottom: 0;
+        container-type: size;
+        container-name: controls;
+        z-index: 100;
+    }
+
+    /* Portrait */
+    @container controls (aspect-ratio <= 4/3) {
+        .game-container .controls .zone {
+            position: absolute;
+            bottom: 30cqw;
+            left: 2cqw;
+            width: 50cqw;
+            height: 50cqw;
+            display: grid;
+            background-color: gray;
+
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 50% 50%;
+
+            transform: rotate(45deg);
+        }
+
+        .game-container .controls .zone > * {
+            border: 1px solid white;
+        }
+
+        .game-container .controls .button {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-container .controls .button.button-a {
+            background-color: red;
+            right: 2cqw;
+            bottom: 45cqw;    
+            border-radius: 100%;
+            width: 18cqw;
+            height: 18cqw;
+            font-size: 8cqw;
+        }
+
+        .game-container .controls .button.button-b {
+            background-color: red;
+            right: 19cqw;
+            bottom: 30cqw;    
+            border-radius: 100%;
+            width: 18cqw;
+            height: 18cqw;
+            font-size: 8cqw;
+        }
+
+        .game-container .controls .button.button-select {
+            background-color: gray;
+            left: 45cqw;
+            bottom: 3cqw;
+            width: 18cqw;
+            height: 12cqw;
+            border-radius: 1cqw;
+            font-size: 4cqw;
+        }
+
+        .game-container .controls .button.button-start {
+            background-color: gray;
+            left: 66cqw;
+            bottom: 3cqw; 
+            width: 18cqw;
+            height: 12cqw;
+            border-radius: 1cqw;
+            font-size: 4cqw;
+        }
+    }
+
+    /* Landscape */
+    @container controls (aspect-ratio > 4/3) {
+        .game-container .controls .zone {
+            position: absolute;
+            top: 10cqh;
+            left: 2cqw;
+            width: 80cqh;
+            height: 80cqh;
+            display: grid;
+            background-color: gray;
+
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 50% 50%;
+
+            transform: rotate(45deg);
+        }
+
+        .game-container .controls .zone > * {
+            border: 1px solid white;
+        }
+
+        .game-container .controls .button {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-container .controls .button.button-a {
+            background-color: red;
+            right: 2cqh;
+            top: 42cqh;    
+            border-radius: 100%;
+            width: 25cqh;
+            height: 25cqh;
+            font-size: 12cqh;
+        }
+
+        .game-container .controls .button.button-b {
+            background-color: red;
+            right: 29cqh;
+            top: 52cqh;    
+            border-radius: 100%;
+            width: 25cqh;
+            height: 25cqh;
+            font-size: 12cqh;
+        }
+
+        .game-container .controls .button.button-select {
+            background-color: gray;
+            left: calc(50cqw - 37cqh);
+            top: 70cqh;    
+            width: 36cqh;
+            height: 24cqh;
+            border-radius: 1cqh;
+            font-size: 4cqh;
+        }
+
+        .game-container .controls .button.button-start {
+            background-color: gray;
+            left: calc(50cqw + 1cqh);
+            top: 70cqh;    
+            width: 36cqh;
+            height: 24cqh;
+            border-radius: 1cqh;
+            font-size: 4cqh;
+        }
+    }
+}
