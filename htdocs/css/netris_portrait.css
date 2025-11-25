@@ -21,14 +21,14 @@
     @container controls (aspect-ratio <= 4/3) {
         .game-container .controls .zone {
             position: absolute;
-            top: 2cqw;
-            left: -5cqw;
+            top: -2cqw;
+            left: 3cqw;
             width: 50cqw;
             height: 50cqw;
             display: grid;
             grid-template-columns: 50% 50%;
             grid-template-rows: 50% 50%;
-            transform: rotate(65deg);
+            transform: rotate(67deg);
         }
 
         .game-container .controls .zone > * {
