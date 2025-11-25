@@ -10,7 +10,6 @@
     .game-container .controls {
         width: 100cqw;
         height: calc(100cqh - (3 / 4 * 100cqw));
-        /* background-color: green; */
         position: absolute;
         bottom: 0;
         container-type: size;
@@ -22,12 +21,11 @@
     @container controls (aspect-ratio <= 4/3) {
         .game-container .controls .zone {
             position: absolute;
-            bottom: 30cqw;
-            left: 2cqw;
+            bottom: 55cqw;
+            left: -4cqw;
             width: 50cqw;
             height: 50cqw;
             display: grid;
-            background-color: gray;
 
             grid-template-columns: 50% 50%;
             grid-template-rows: 50% 50%;
@@ -47,9 +45,8 @@
         }
 
         .game-container .controls .button.button-a {
-            background-color: red;
             right: 2cqw;
-            bottom: 45cqw;    
+            bottom: 75cqw;    
             border-radius: 100%;
             width: 18cqw;
             height: 18cqw;
@@ -57,9 +54,8 @@
         }
 
         .game-container .controls .button.button-b {
-            background-color: red;
-            right: 19cqw;
-            bottom: 30cqw;    
+            right: 17cqw;
+            bottom: 60cqw;    
             border-radius: 100%;
             width: 18cqw;
             height: 18cqw;
@@ -67,9 +63,8 @@
         }
 
         .game-container .controls .button.button-select {
-            background-color: gray;
             left: 45cqw;
-            bottom: 3cqw;
+            bottom: 6cqw;
             width: 18cqw;
             height: 12cqw;
             border-radius: 1cqw;
@@ -77,9 +72,8 @@
         }
 
         .game-container .controls .button.button-start {
-            background-color: gray;
             left: 66cqw;
-            bottom: 3cqw; 
+            bottom: 6cqw; 
             width: 18cqw;
             height: 12cqw;
             border-radius: 1cqw;
@@ -96,7 +90,6 @@
             width: 80cqh;
             height: 80cqh;
             display: grid;
-            background-color: gray;
 
             grid-template-columns: 50% 50%;
             grid-template-rows: 50% 50%;
@@ -116,7 +109,6 @@
         }
 
         .game-container .controls .button.button-a {
-            background-color: red;
             right: 2cqh;
             top: 42cqh;    
             border-radius: 100%;
@@ -126,7 +118,6 @@
         }
 
         .game-container .controls .button.button-b {
-            background-color: red;
             right: 29cqh;
             top: 52cqh;    
             border-radius: 100%;
@@ -136,7 +127,6 @@
         }
 
         .game-container .controls .button.button-select {
-            background-color: gray;
             left: calc(50cqw - 37cqh);
             top: 70cqh;    
             width: 36cqh;
@@ -146,7 +136,6 @@
         }
 
         .game-container .controls .button.button-start {
-            background-color: gray;
             left: calc(50cqw + 1cqh);
             top: 70cqh;    
             width: 36cqh;

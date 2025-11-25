@@ -15,19 +15,17 @@
         top: 0;
         left: 0;
         container-type: size;
-        /* background-color: #ff990044; */
         z-index: 100;
         pointer-events: none;
     }
 
     .game-container .controls .zone {
         position: absolute;
-        bottom: 20cqh;
-        left: 2cqw;
+        bottom: 40cqh;
+        left: -4cqw;
         width: 50cqh;
         height: 50cqh;
         display: grid;
-        background-color: gray;
 
         grid-template-columns: 50% 50%;
         grid-template-rows: 50% 50%;
@@ -49,9 +47,8 @@
     }
 
     .game-container .controls .button.button-a {
-        background-color: red;
         right: 1cqw;
-        bottom: 38cqh;    
+        top: 12cqh;    
         border-radius: 100%;
         width: 11cqw;
         height: 11cqw;
@@ -59,9 +56,8 @@
     }
 
     .game-container .controls .button.button-b {
-        background-color: red;
-        right: 13cqw;
-        bottom: 28cqh;    
+        right: 12cqw;
+        top: 26cqh;    
         border-radius: 100%;
         width: 11cqw;
         height: 11cqw;
@@ -69,22 +65,20 @@
     }
 
     .game-container .controls .button.button-select {
-        background-color: gray;
         right: 2cqh;
-        top: 2cqh;    
-        width: 18cqh;
-        height: 12cqh;
+        bottom: 12cqh;    
+        width: 14cqh;
+        height: 10cqh;
         border-radius: 1cqh;
-        font-size: 4cqh;
+        font-size: 3.5cqh;
     }
 
     .game-container .controls .button.button-start {
-        background-color: gray;
         right: 2cqh;
-        top: 15cqh;    
-        width: 18cqh;
-        height: 12cqh;
+        bottom: 1cqh;    
+        width: 14cqh;
+        height: 10cqh;
         border-radius: 1cqh;
-        font-size: 4cqh;
+        font-size: 3.5cqh;
     }
 }
