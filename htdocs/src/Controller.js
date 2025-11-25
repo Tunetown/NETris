@@ -297,18 +297,23 @@ export class Controller {
         );
     }
 
+    /**
+     * Create virtual gamepad
+     */
     #createControls() {
         function createButton(content, keycode, classes) {
             return $('<div>' + content + '</div>')
-            .addClass(classes)
-            .on('mousedown touchstart', function(e) {
-                e.preventDefault();
-                EJS_emulator.gameManager.simulateInput(0, keycode, 1);
-            })
-            .on('mouseup touchend', function(e) {
-                e.preventDefault();
-                EJS_emulator.gameManager.simulateInput(0, keycode, 0);
-            });
+                .addClass(classes)
+                .on('mousedown touchstart', function(e) {
+                    e.preventDefault();
+                    $(this).addClass('active');
+                    EJS_emulator.gameManager.simulateInput(0, keycode, 1);
+                })
+                .on('mouseup touchend', function(e) {
+                    e.preventDefault();
+                    $(this).removeClass('active');
+                    EJS_emulator.gameManager.simulateInput(0, keycode, 0);
+                });
         }
 
         const ret = $('<div class="controls"/>').append(

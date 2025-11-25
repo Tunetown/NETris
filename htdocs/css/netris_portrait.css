@@ -31,10 +31,6 @@
             transform: rotate(67deg);
         }
 
-        .game-container .controls .zone > * {
-            border: 1px solid white;
-        }
-
         .game-container .controls .button {
             position: absolute;
             display: flex;
@@ -93,10 +89,6 @@
             grid-template-rows: 50% 50%;
 
             transform: rotate(45deg);
-        }
-
-        .game-container .controls .zone > * {
-            border: 1px solid white;
         }
 
         .game-container .controls .button {

@@ -85,8 +85,8 @@ body {
 }
 
 
-.game-container .controls .normal-button {
-}
+/* .game-container .controls .normal-button {
+} */
 
 .game-container .controls .zone {
     max-width: 350px;
@@ -94,16 +94,37 @@ body {
 }
 
 .game-container .controls .zone > * {
-    background-color: #5d5d5d96;
+    background-color: #5d5d5d;
+    border: 1px solid #000000;
+    opacity: 0.6;
+}
+
+.game-container .controls .zone > *.active {
+    opacity: 0.8;
 }
 
 .game-container .controls .button.button-a,
 .game-container .controls .button.button-b {
-    background-color: rgba(255, 0, 0, 0.581);
+    background-color: rgba(255, 0, 0);
+    color: white;
+    opacity: 0.6;
 }
 
+.game-container .controls .button.button-a.active,
+.game-container .controls .button.button-b.active {
+    opacity: 0.8;
+}
 
 .game-container .controls .button.button-select,
 .game-container .controls .button.button-start {
-    background-color: #5d5d5d96;
+    background-color: #5d5d5d;
+    color: white;
+    opacity: 0.6;
 }
+
+.game-container .controls .button.button-select.active,
+.game-container .controls .button.button-start.active {
+    opacity: 0.8;
+}
+
+
